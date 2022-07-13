@@ -1,4 +1,3 @@
-from importlib.resources import path
 from moviepy.editor import *
 import random
 import os
@@ -15,3 +14,6 @@ def listOfVideoClips(folder_name):
 list = listOfVideoClips('Clips')
 print()
 print(list)
+
+finalVideo = concatenate_videoclips(list)
+finalVideo.write_videofile('finalProduct.mp4')
