@@ -26,15 +26,21 @@ toppings = ['Fruity Pebbles', 'Coconut Flakes', 'Crushed Oreos', 'Granola', 'Moc
 drizzles = ['Chocolate Syrup', 'Strawberry Syrup', 'Condensed Milk', 'Caramel Syrup']
 
 def waffleCombos():
+    # Starting with waffle
     combosList = ['Waffle']
+
+    # Loop through every ice cream flavor
     for iceCream in iceCreamFlavors:
         remToppings = toppings.copy()
         combosList.append(iceCream)
         yield combosList
+        # Case 1: Just ice cream and drizzle
         for drizzle in drizzles:
             combosList.append(drizzle)
             yield combosList
             combosList.pop()
+
+        # Case 2: Ice Cream + 1 Topping + Drizzle
         for topping1 in toppings:
             combosList.append(topping1)
             yield combosList
@@ -43,6 +49,8 @@ def waffleCombos():
                 combosList.append(drizzle)
                 yield combosList
                 combosList.pop()
+
+            # Case 3: Ice cream + 2 topping + drizzle
             for topping2 in remToppings:
                 combosList.append(topping2)
                 yield combosList
@@ -50,8 +58,11 @@ def waffleCombos():
                     combosList.append(drizzle)
                     yield combosList
                     combosList.pop()
+                # Backtrack to new 2nd topping
                 combosList.pop()
+            # Backtrack to new 1st topping
             combosList.pop()
+        # Backtrack to new ice cream flavor
         combosList.pop()
         
 combos = waffleCombos()
