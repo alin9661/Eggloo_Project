@@ -124,8 +124,3 @@ def waffleDrizzleCombos():
 combos = waffleDrizzleCombos()
 for combo in combos:
     print(combo)
-
-# for i in range(1,5):
-#     permutation = itertools.permutations(list(range(4)), i)
-#     for perm in permutation:
-#         print(list(perm))
