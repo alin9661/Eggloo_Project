@@ -26,7 +26,10 @@ toppings = ['Fruity Pebbles', 'Coconut Flakes', 'Crushed Oreos', 'Granola', 'Moc
 drizzles = ['Chocolate Syrup', 'Strawberry Syrup', 'Condensed Milk', 'Caramel Syrup']
 
 def waffleCombos():
-    # Starting with waffle
+    # Starting with waffle, the total number of combinations that can be made
+    # with 7 ice cream flavors, 9 toppings, and 4 drizzles is 1610
+    # This function loops through every ice cream flavor which can each have two
+    # toppings and 1 drizzle on a case by case basis
     combosList = ['Waffle']
 
     # Loop through every ice cream flavor
@@ -34,6 +37,7 @@ def waffleCombos():
         remToppings = toppings.copy()
         combosList.append(iceCream)
         yield combosList
+
         # Case 1: Just ice cream and drizzle
         for drizzle in drizzles:
             combosList.append(drizzle)
