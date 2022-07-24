@@ -44,24 +44,24 @@ def waffleCombos():
             yield combosList
             combosList.pop()
 
-        # Case 4: Ice Cream + 1 Topping
+        # Case 3: Ice Cream + 1 Topping
         for topping1 in toppings:
             combosList.append(topping1)
             yield combosList
             remToppings.remove(topping1)
 
-            # Case 5: Ice Cream + 1 topping + drizzle
+            # Case 4: Ice Cream + 1 topping + drizzle
             for drizzle in drizzles:
                 combosList.append(drizzle)
                 yield combosList
                 combosList.pop()
 
-            # Case 6: Ice cream + 2 topping
+            # Case 5: Ice cream + 2 topping
             for topping2 in remToppings:
                 combosList.append(topping2)
                 yield combosList
 
-                # Case 7: Ice Cream + 2 topping + drizzle
+                # Case 6: Ice Cream + 2 topping + drizzle
                 for drizzle in drizzles:
                     combosList.append(drizzle)
                     yield combosList
