@@ -32,32 +32,36 @@ def waffleCombos():
     # toppings and 1 drizzle on a case by case basis
     combosList = ['Waffle']
 
-    # Loop through every ice cream flavor
+    # Case 1: Just ice cream
     for iceCream in iceCreamFlavors:
         remToppings = toppings.copy()
         combosList.append(iceCream)
         yield combosList
 
-        # Case 1: Just ice cream and drizzle
+        # Case 2: Ice cream + drizzle
         for drizzle in drizzles:
             combosList.append(drizzle)
             yield combosList
             combosList.pop()
 
-        # Case 2: Ice Cream + 1 Topping + Drizzle
+        # Case 4: Ice Cream + 1 Topping
         for topping1 in toppings:
             combosList.append(topping1)
             yield combosList
             remToppings.remove(topping1)
+
+            # Case 5: Ice Cream + 1 topping + drizzle
             for drizzle in drizzles:
                 combosList.append(drizzle)
                 yield combosList
                 combosList.pop()
 
-            # Case 3: Ice cream + 2 topping + drizzle
+            # Case 6: Ice cream + 2 topping
             for topping2 in remToppings:
                 combosList.append(topping2)
                 yield combosList
+
+                # Case 7: Ice Cream + 2 topping + drizzle
                 for drizzle in drizzles:
                     combosList.append(drizzle)
                     yield combosList
