@@ -1,4 +1,5 @@
 from moviepy.editor import *
+import itertools
 import random
 import os
 
@@ -24,6 +25,8 @@ iceCreamFlavors = ['Vanilla', 'Strawberry', 'Matcha', 'Chocolate Lover', 'Cookie
 toppings = ['Fruity Pebbles', 'Coconut Flakes', 'Crushed Oreos', 'Granola', 'Mochi', 'Diced Peanuts', 'Whipped Cream', 'Pocky Sticks', 'Fresh Fruit']
 
 drizzles = ['Chocolate Syrup', 'Strawberry Syrup', 'Condensed Milk', 'Caramel Syrup']
+
+whippedAndPocky = ['Whipped Cream', 'Pocky']
 
 def waffleCombos():
     # Starting with waffle, the total number of combinations that can be made
@@ -73,8 +76,56 @@ def waffleCombos():
         # Backtrack to new ice cream flavor
         combosList.pop()
         
-combos = waffleCombos()
-numOfCombos = sum(1 for _ in waffleCombos())
+# combos = waffleCombos()
+# numOfCombos = sum(1 for _ in waffleCombos())
+# for combo in combos:
+#     print(combo)
+# print(numOfCombos)
+
+def waffleDrizzleCombos():  
+    # Whipping cream or no WC, Pocky or no pocky
+    # All 4 drizzle permutations, which means the order in which
+    # we put the drizzle matters in calculation
+    combosList = ['Waffle']
+
+    # Case 1: Just ice cream
+    for iceCream in iceCreamFlavors:
+        combosList.append(iceCream)
+        yield combosList
+
+        # Whipped cream and pocky stick combinations
+        for i in range(1, len(whippedAndPocky)+1):
+            combinations = itertools.combinations(whippedAndPocky, i)
+            for combination in combinations:
+                combosList.extend(list(combination))
+                yield combosList
+
+        # Case 3: Ice cream + toppings + drizzle drizzle (All permutations of drizzle)
+                for j in range(1, len(drizzles)+1):
+                    # Permutation function allows us to pass a list of items to
+                    # find the permutations of with an integer input of how long 
+                    # desired sequence to be
+                    permutations = itertools.permutations(drizzles, j)
+                    for permutation in permutations:
+                        combosList.extend(list(permutation))
+                        yield combosList
+
+                        # Backtrack as many toppings as we added
+                        for k in range(j):
+                            combosList.pop()
+                
+                # Backtracking for whipped cream and pocky sticks
+                for j in range(i):
+                    combosList.pop()
+
+        # Backtrack to new ice cream flavor
+        combosList.pop()
+
+combos = waffleDrizzleCombos()
 for combo in combos:
     print(combo)
-print(numOfCombos)
+
+# for i in range(1,5):
+#     permutation = itertools.permutations(list(range(4)), i)
+#     for perm in permutation:
+#         print(list(perm))
