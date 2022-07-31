@@ -26,7 +26,7 @@ toppings = ['Fruity Pebbles', 'Coconut Flakes', 'Crushed Oreos', 'Granola', 'Moc
 
 drizzles = ['Chocolate Syrup', 'Strawberry Syrup', 'Condensed Milk', 'Caramel Syrup']
 
-whippedAndPocky = ['Whipped Cream', 'Chocolate Pocky', 'Strawberry Pocky']
+whippedAndPocky = ['Whipped Cream', 'Chocolate Pocky']
 
 def waffleCombos():
     # Starting with waffle, the total number of combinations that can be made
@@ -154,4 +154,3 @@ print(listOfVanilla)
 # If the program stops print the number it stopped at.
 # Use the number as input for the function to start again at the number
 # rather than resetting from 0, set default arguement to 0
-
