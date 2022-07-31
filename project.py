@@ -26,7 +26,7 @@ toppings = ['Fruity Pebbles', 'Coconut Flakes', 'Crushed Oreos', 'Granola', 'Moc
 
 drizzles = ['Chocolate Syrup', 'Strawberry Syrup', 'Condensed Milk', 'Caramel Syrup']
 
-whippedAndPocky = ['Whipped Cream', 'Pocky']
+whippedAndPocky = ['Whipped Cream', 'Chocolate Pocky', 'Strawberry Pocky']
 
 def waffleCombos():
     # Starting with waffle, the total number of combinations that can be made
@@ -120,6 +120,18 @@ def waffleDrizzleCombos():
 
         # Backtrack to new ice cream flavor
         combosList.pop()
+
+def makeVideo(listOfStrings):
+    # makeVideo takes a list of strings generated from waffleDrizzleCombos
+    # and creates a video by concatenating clips using the corresponding name
+    # of the string with respect to the order at which they appear in the string
+    
+    hasWhipped = False
+    hasPocky = False
+
+    
+
+
 
 combos = waffleDrizzleCombos()
 for combo in combos:
