@@ -133,6 +133,14 @@ def makeVideo(listOfStrings):
 
 
 
-combos = waffleDrizzleCombos()
-for combo in combos:
-    print(combo)
+# combos = waffleDrizzleCombos()
+# for i, combo in enumerate(combos):
+#     print(i, combo)
+
+
+
+# Make a function to print the videos with numbers as the output.
+# If the program stops print the number it stopped at.
+# Use the number as input for the function to start again at the number
+# rather than resetting from 0, set default arguement to 0
+
