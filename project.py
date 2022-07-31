@@ -129,10 +129,21 @@ def makeVideo(listOfStrings):
     hasWhipped = False
     hasPocky = False
 
+# Method 1
+# Inside 'Clips' folder create folders to separate the ice cream flavors
+# Inside the ice cream folders separate them by toppings (i.e. whipped/no whipped, pocky/no pocky)
+# From their consider order of name
+
+#  Method 2
+# Use some data structure (Dictionary, Tree)
+
+# test code (To be deleted)
+listOfFolders = os.listdir('Clips')
+print(listOfFolders)
+pathname = os.path.abspath('Clips')
+listOfVanilla = os.listdir(os.path.join(pathname, 'Vanilla'))
+print(listOfVanilla)
     
-
-
-
 # combos = waffleDrizzleCombos()
 # for i, combo in enumerate(combos):
 #     print(i, combo)
