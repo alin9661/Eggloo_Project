@@ -19,6 +19,9 @@ def listOfVideoClips(folder_name):
 # finalVideo = concatenate_videoclips(list)
 # finalVideo.write_videofile('finalProduct.mp4')
 
+# final_clip.write_videofile(op.join(movie_fol, out_movie_name)) 
+# add folder name to path to send to that directory
+# default is to send it to the current directory (current folder)
 
 iceCreamFlavors = ['Vanilla', 'Strawberry', 'Matcha', 'Chocolate Lover', 'Cookies \'n\' Cream', 'Campfire S\'mores', 'Strawberry Cheesecake']
 
@@ -128,6 +131,29 @@ def makeVideo(listOfStrings):
     
     hasWhipped = False
     hasPocky = False
+    pathName = os.path.abspath('Clips')
+
+    iceCreamFlavor = ''
+    numOfDrizzles = 0
+    for item in listOfStrings:
+        if item in iceCreamFlavors:
+            iceCreamFlavor = item
+            pathName = os.path.join(pathName, iceCreamFlavor)
+        if item in whippedAndPocky:
+            if item == 'Whipped Cream':
+                hasWhipped = True
+            else:
+                hasPocky = True
+        if item in drizzles:
+            numOfDrizzles += 1
+    
+    
+
+
+
+# Searching through video files,
+# if video found create it
+# else print that video couldn't be created due to 'insert reason'
 
 # Method 1
 # Inside 'Clips' folder create folders to separate the ice cream flavors
@@ -138,15 +164,15 @@ def makeVideo(listOfStrings):
 # Use some data structure (Dictionary, Tree)
 
 # test code (To be deleted)
-listOfFolders = os.listdir('Clips')
-print(listOfFolders)
-pathname = os.path.abspath('Clips')
-listOfVanilla = os.listdir(os.path.join(pathname, 'Vanilla'))
-print(listOfVanilla)
+# listOfFolders = os.listdir('Clips')
+# print(listOfFolders)
+# pathname = os.path.abspath('Clips')
+# listOfVanilla = os.listdir(os.path.join(pathname, 'Vanilla'))
+# print(listOfVanilla)
     
-# combos = waffleDrizzleCombos()
-# for i, combo in enumerate(combos):
-#     print(i, combo)
+combos = waffleDrizzleCombos()
+for i, combo in enumerate(combos):
+    print(i, combo)
 
 
 
@@ -154,3 +180,5 @@ print(listOfVanilla)
 # If the program stops print the number it stopped at.
 # Use the number as input for the function to start again at the number
 # rather than resetting from 0, set default arguement to 0
+
+# Possibly ask for user input, but it could be obnoxious 
