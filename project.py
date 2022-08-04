@@ -199,13 +199,7 @@ for i, num in enumerate(nums):
 # if video found create it
 # else print that video couldn't be created due to 'insert reason'
 
-# Method 1
-# Inside 'Clips' folder create folders to separate the ice cream flavors
-# Inside the ice cream folders separate them by toppings (i.e. whipped/no whipped, pocky/no pocky)
-# From their consider order of name
 
-#  Method 2
-# Use some data structure (Dictionary, Tree)
 
 # test code (To be deleted)
 # listOfFolders = os.listdir('Clips')
