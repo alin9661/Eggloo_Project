@@ -132,24 +132,68 @@ def makeVideo(listOfStrings):
     hasWhipped = False
     hasPocky = False
     pathName = os.path.abspath('Clips')
+    videos = []
 
-    iceCreamFlavor = ''
-    numOfDrizzles = 0
     for item in listOfStrings:
-        if item in iceCreamFlavors:
-            iceCreamFlavor = item
-            pathName = os.path.join(pathName, iceCreamFlavor)
-        if item in whippedAndPocky:
+        listOfDirectory = os.listdir(pathName)
+        if item == 'Waffle':
+            # Find video in folder
+            for video in listOfDirectory: 
+                # Add video to list
+                if item in video:
+                    videos.append(video)
+
+                # Video wasn't found in folder, error
+                else:
+                    print('Waffle video couldn\'t be found')
+                    return
+
+        elif item in iceCreamFlavors:
+            pathName = os.path.join(pathName, item)
+            listOfDirectory = os.listdir(pathName)
+            for video in listOfDirectory:
+                if item in video:
+                    pass
+
+                # Video wasn't found
+                else:
+                    print(item, 'video couldn\'t be found')
+                    return
+        
+        elif item in whippedAndPocky:
             if item == 'Whipped Cream':
-                hasWhipped = True
-            else:
-                hasPocky = True
-        if item in drizzles:
-            numOfDrizzles += 1
-    
-    
+                pass
+
+            # It is possible to reach this statement without reaching whipped cream
+            # In that case whipped cream wasn't a topping and we should go straight
+            # into no whipped cream folder
+            elif item == 'Chocolate Pocky':
+                pass
+
+        elif item in drizzles:
+            pass
 
 
+# path = os.path.abspath('Clips')
+# listOfStuff = os.listdir(path)
+# print(listOfStuff)
+# for item in listOfStuff:
+#     if 'Cookies' in item:
+#         print(item)
+
+nums = list(range(1,11))
+for i, num in enumerate(nums):
+    print(i, end=' ')
+    print(num)
+
+# Brute force solution
+# Every video will be inside its respective folder name, search through the folder for the video
+# If video is found, append and keep searching until list is empty
+# Else print reason for why video wasn't printed
+
+# Videos will be name with drizzles in order of being place
+# Assuming they are in the proper folder there is no need to name them
+# by ice cream or topping
 
 # Searching through video files,
 # if video found create it
@@ -170,9 +214,9 @@ def makeVideo(listOfStrings):
 # listOfVanilla = os.listdir(os.path.join(pathname, 'Vanilla'))
 # print(listOfVanilla)
     
-combos = waffleDrizzleCombos()
-for i, combo in enumerate(combos):
-    print(i, combo)
+# combos = waffleDrizzleCombos()
+# for i, combo in enumerate(combos):
+#     print(i, combo)
 
 
 
