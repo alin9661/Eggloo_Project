@@ -31,60 +31,6 @@ drizzles = ['Chocolate Syrup', 'Strawberry Syrup', 'Condensed Milk', 'Caramel Sy
 
 whippedAndPocky = ['Whipped Cream', 'Chocolate Pocky']
 
-def waffleCombos():
-    # Starting with waffle, the total number of combinations that can be made
-    # with 7 ice cream flavors, 9 toppings, and 4 drizzles is 1610
-    # This function loops through every ice cream flavor which can each have two
-    # toppings and 1 drizzle on a case by case basis
-    combosList = ['Waffle']
-
-    # Case 1: Just ice cream
-    for iceCream in iceCreamFlavors:
-        remToppings = toppings.copy()
-        combosList.append(iceCream)
-        yield combosList
-
-        # Case 2: Ice cream + drizzle
-        for drizzle in drizzles:
-            combosList.append(drizzle)
-            yield combosList
-            combosList.pop()
-
-        # Case 3: Ice Cream + 1 Topping
-        for topping1 in toppings:
-            combosList.append(topping1)
-            yield combosList
-            remToppings.remove(topping1)
-
-            # Case 4: Ice Cream + 1 topping + drizzle
-            for drizzle in drizzles:
-                combosList.append(drizzle)
-                yield combosList
-                combosList.pop()
-
-            # Case 5: Ice cream + 2 topping
-            for topping2 in remToppings:
-                combosList.append(topping2)
-                yield combosList
-
-                # Case 6: Ice Cream + 2 topping + drizzle
-                for drizzle in drizzles:
-                    combosList.append(drizzle)
-                    yield combosList
-                    combosList.pop()
-                # Backtrack to new 2nd topping
-                combosList.pop()
-            # Backtrack to new 1st topping
-            combosList.pop()
-        # Backtrack to new ice cream flavor
-        combosList.pop()
-        
-# combos = waffleCombos()
-# numOfCombos = sum(1 for _ in waffleCombos())
-# for combo in combos:
-#     print(combo)
-# print(numOfCombos)
-
 def waffleDrizzleCombos():  
     # Whipping cream or no WC, Pocky or no pocky
     # All 4 drizzle permutations, which means the order in which
@@ -207,12 +153,6 @@ def makeVideo(listOfStrings):
             pass
 
 
-# path = os.path.abspath('Clips')
-# listOfStuff = os.listdir(path)
-# print(listOfStuff)
-# for item in listOfStuff:
-#     if 'Cookies' in item:
-#         print(item)
 
 # nums = list(range(1,11))
 # for i, num in enumerate(nums):
