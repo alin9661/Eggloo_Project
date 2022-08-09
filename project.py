@@ -132,45 +132,78 @@ def makeVideo(listOfStrings):
     hasWhipped = False
     hasPocky = False
     pathName = os.path.abspath('Clips')
+    listOfDirectory = os.listdir(pathName)
     videos = []
 
     for item in listOfStrings:
-        listOfDirectory = os.listdir(pathName)
         if item == 'Waffle':
             # Find video in folder
             for video in listOfDirectory: 
                 # Add video to list
                 if item in video:
                     videos.append(video)
+                    break
 
-                # Video wasn't found in folder, error
-                else:
-                    print('Waffle video couldn\'t be found')
-                    return
+            # Video wasn't found in folder, error
+            else:
+                print('Waffle video couldn\'t be found')
+                return
 
         elif item in iceCreamFlavors:
             pathName = os.path.join(pathName, item)
             listOfDirectory = os.listdir(pathName)
             for video in listOfDirectory:
+                # Add video to list
                 if item in video:
-                    pass
+                    videos.append(video)
+                    break
+
+            # Video wasn't found
+            else:
+                print(item, 'video couldn\'t be found')
+                return
+        
+        elif item in whippedAndPocky:
+            if item == 'Whipped Cream':
+                hasWhipped = True
+                pathName = os.path.join(pathName, item)
+                listOfDirectory = os.listdir(pathName)
+                for video in listOfDirectory:
+                    # Add video to list
+                    if item in video:
+                        videos.append(video)
+                        break
 
                 # Video wasn't found
                 else:
                     print(item, 'video couldn\'t be found')
                     return
-        
-        elif item in whippedAndPocky:
-            if item == 'Whipped Cream':
-                pass
 
             # It is possible to reach this statement without reaching whipped cream
             # In that case whipped cream wasn't a topping and we should go straight
             # into no whipped cream folder
-            elif item == 'Chocolate Pocky':
-                pass
+            elif item == 'Chocolate Pocky' and hasWhipped:
+                hasPocky = True
+                pathName = os.path.join(pathName, item)
+                listOfDirectory = os.listdir(pathName)
+                for video in listOfDirectory:
+                    # Add video to list
+                    if item in video:
+                        videos.append(video)
+                        break
+
+                # Video wasn't found
+                else:
+                    print(item, 'video couldn\'t be found')
+                    return
+
+            elif item == 'Chocolate Pocky' and not hasWhipped:
+                pathName = os.path.join(pathName, 'No Whipped Cream')
+                listOfDirectory = os.listdir(pathName)
 
         elif item in drizzles:
+            # Possible to reach here without adding a pocky or whipped cream
+            # in that case we would have to go to no whipped and no pocky
             pass
 
 
@@ -181,10 +214,10 @@ def makeVideo(listOfStrings):
 #     if 'Cookies' in item:
 #         print(item)
 
-nums = list(range(1,11))
-for i, num in enumerate(nums):
-    print(i, end=' ')
-    print(num)
+# nums = list(range(1,11))
+# for i, num in enumerate(nums):
+#     print(i, end=' ')
+#     print(num)
 
 # Brute force solution
 # Every video will be inside its respective folder name, search through the folder for the video
@@ -199,13 +232,11 @@ for i, num in enumerate(nums):
 # if video found create it
 # else print that video couldn't be created due to 'insert reason'
 
-
-
 # test code (To be deleted)
 # listOfFolders = os.listdir('Clips')
 # print(listOfFolders)
 # pathname = os.path.abspath('Clips')
-# listOfVanilla = os.listdir(os.path.join(pathname, 'Vanilla'))
+# listOfVanilla = os.listdir(os.path.join(pathname, 'Strawberry Cheesecake'))
 # print(listOfVanilla)
     
 # combos = waffleDrizzleCombos()
