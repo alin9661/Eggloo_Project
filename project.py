@@ -1,12 +1,6 @@
-import string
 from moviepy.editor import *
 import itertools
-import random
 import os
-
-# list = listOfVideoClips('Clips')
-# print()
-# print(list)
 
 # finalVideo = concatenate_videoclips(list)
 # finalVideo.write_videofile('finalProduct.mp4')
