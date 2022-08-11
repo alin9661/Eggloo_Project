@@ -76,7 +76,6 @@ def makeVideo(listOfStrings):
     hasPocky = False
     pathName = os.path.abspath('Clips')
     listOfDirectory = os.listdir(pathName)
-    listOfDrizzles = []
     videos = []
     
 
@@ -154,7 +153,7 @@ def makeVideo(listOfStrings):
 
                 # Video wasn't found
                 else:
-                    print(item, 'couldn\'t be found')
+                    print(item, 'video couldn\'t be found')
                     return
 
         elif item in drizzles:
@@ -164,21 +163,26 @@ def makeVideo(listOfStrings):
                 pathName = os.path.join(pathName, 'No Whipped Cream', 'No Pocky Stick')
                 listOfDirectory = os.listdir(pathName)
 
-            # Continue where we left off
-            # Add drizzles into a list, when for loop finishes create a string of words with the list
-            # Using the string search for video name, else print video couldn't be found
-            listOfDrizzles.append(item)
-    
-    stringOfDrizzles = ', '.join(listOfDrizzles)
-    for video in listOfDirectory:
-        # Add video to list
-        if stringOfDrizzles in video:
-            videos.append(VideoFileClip(os.path.join(pathName, video)))
-            break
-    # Video wasn't found
-    else:
-        print(item, 'couldn\'t be found')
-        return
+            # Create a string of drizzle names to search for video
+            stringOfDrizzles = ''
+            if not stringOfDrizzles:
+                stringOfDrizzles = item
+            else:
+                stringOfDrizzles += ', ' + item
+            
+            # Find video from drizzles
+            # Loop through sorted listOfDirectory to obtain the first occurence
+            # of the video we are looking for so we don't mess up the order
+            for video in sorted(listOfDirectory):
+                # Add video to list
+                if stringOfDrizzles in video:
+                    videos.append(video)
+                    break
+
+            # Video wasn't found
+            else:
+                print(stringOfDrizzles, 'video couldn\'t be found')
+                return
 
     # All videos were found, return list
     return videos
