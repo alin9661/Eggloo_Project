@@ -17,10 +17,11 @@ drizzles = ['Chocolate Syrup', 'Strawberry Syrup', 'Condensed Milk', 'Caramel Sy
 
 whippedAndPocky = ['Whipped Cream', 'Chocolate Pocky']
 
-def waffleDrizzleCombos():  
-    # Whipping cream or no WC, Pocky or no pocky
-    # All 4 drizzle permutations, which means the order in which
-    # we put the drizzle matters in calculation
+def waffleCombos():  
+    # waffleCombos returns lists of all possible combinations
+    # and permutations of waffle orders
+
+    # Combination starting with Waffle
     combosList = ['Waffle']
 
     # Case 1: Just ice cream
@@ -49,7 +50,7 @@ def waffleDrizzleCombos():
                 combosList.extend(list(combination))
                 yield combosList
 
-        # Case 3: Ice cream + toppings + drizzle drizzle (All permutations of drizzle)
+                # Case 3: Ice cream + toppings + drizzle drizzle (All permutations of drizzle)
                 for j in range(1, len(drizzles)+1):
                     permutations = itertools.permutations(drizzles, j)
                     for permutation in permutations:
@@ -203,7 +204,7 @@ def videoCreator(startNum=0):
     # video combination.
     # It takes in a starting number parameter, default 0, to skip video processing
     # of videos before the startNum index
-    combos = waffleDrizzleCombos()
+    combos = waffleCombos()
     for i, combo in enumerate(combos):
         # Skip video at this index
         if i < startNum:
@@ -220,11 +221,8 @@ def videoCreator(startNum=0):
 
         # Else video couldn't be found, continue to next combo
 
-# videoCreator(1000)
-
-combos = waffleDrizzleCombos()
-for i, combo in enumerate(combos):
-    print(i, combo)
+videoCreator()
+   
 
 # Brute force solution
 # Every video will be inside its respective folder name, search through the folder for the video
