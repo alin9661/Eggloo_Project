@@ -200,7 +200,7 @@ def videoCreator(startNum=0):
         # All videos were found for this combination, so we create video
         if listOfVideos:
             finalVideo = concatenate_videoclips(listOfVideos)
-            finalVideo.write_videofile(str(i) + '.mp4')
+            finalVideo.write_videofile(os.path.join('Output Videos',str(i) + '.mp4'))
 
         # Else video couldn't be found, continue to next combo
 
