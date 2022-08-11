@@ -199,8 +199,10 @@ def makeVideo(listOfStrings):
 
 
 def videoCreator(startNum=0):
-    # Takes in list of videos and creates result video
-    # Prints out the number of the video
+    # videoCreator calls waffleDrizzleCombos and begins creating videos from each
+    # video combination.
+    # It takes in a starting number parameter, default 0, to skip video processing
+    # of videos before the startNum index
     combos = waffleDrizzleCombos()
     for i, combo in enumerate(combos):
         # Skip video at this index
@@ -211,7 +213,9 @@ def videoCreator(startNum=0):
         listOfVideos = makeVideo(combo)
         # All videos were found for this combination, so we create video
         if listOfVideos:
+            # Merge clips into one video
             finalVideo = concatenate_videoclips(listOfVideos)
+            # Writing video as mp4 file and sending them to Output Videos folder
             finalVideo.write_videofile(os.path.join('Output Videos',str(i) + '.mp4'))
 
         # Else video couldn't be found, continue to next combo
