@@ -1,3 +1,4 @@
+import string
 from moviepy.editor import *
 import itertools
 import random
@@ -79,7 +80,9 @@ def makeVideo(listOfStrings):
     hasPocky = False
     pathName = os.path.abspath('Clips')
     listOfDirectory = os.listdir(pathName)
+    listOfDrizzles = []
     videos = []
+    
 
     for item in listOfStrings:
         if item == 'Waffle':
@@ -87,7 +90,7 @@ def makeVideo(listOfStrings):
             for video in listOfDirectory: 
                 # Add video to list
                 if item in video:
-                    videos.append(video)
+                    videos.append(VideoFileClip(os.path.join(pathName, video)))
                     break
 
             # Video wasn't found in folder, error
@@ -101,7 +104,7 @@ def makeVideo(listOfStrings):
             for video in listOfDirectory:
                 # Add video to list
                 if item in video:
-                    videos.append(video)
+                    videos.append(VideoFileClip(os.path.join(pathName, video)))
                     break
 
             # Video wasn't found
@@ -117,7 +120,7 @@ def makeVideo(listOfStrings):
                 for video in listOfDirectory:
                     # Add video to list
                     if item in video:
-                        videos.append(video)
+                        videos.append(VideoFileClip(os.path.join(pathName, video)))
                         break
 
                 # Video wasn't found
@@ -135,7 +138,7 @@ def makeVideo(listOfStrings):
                 for video in listOfDirectory:
                     # Add video to list
                     if item in video:
-                        videos.append(video)
+                        videos.append(VideoFileClip(os.path.join(pathName, video)))
                         break
 
                 # Video wasn't found
@@ -144,20 +147,70 @@ def makeVideo(listOfStrings):
                     return
 
             elif item == 'Chocolate Pocky' and not hasWhipped:
-                pathName = os.path.join(pathName, 'No Whipped Cream')
+                hasPocky = True
+                pathName = os.path.join(pathName, 'No Whipped Cream', item)
                 listOfDirectory = os.listdir(pathName)
+                for video in listOfDirectory:
+                    # Add video to list
+                    if item in video:
+                        videos.append(VideoFileClip(os.path.join(pathName, video)))
+                        break
+
+                # Video wasn't found
+                else:
+                    print(item, 'couldn\'t be found')
+                    return
 
         elif item in drizzles:
             # Possible to reach here without adding a pocky or whipped cream
             # in that case we would have to go to no whipped and no pocky
-            pass
+            if not hasWhipped and not hasPocky:
+                pathName = os.path.join(pathName, 'No Whipped Cream', 'No Pocky Stick')
+                listOfDirectory = os.listdir(pathName)
 
+            # Continue where we left off
+            # Add drizzles into a list, when for loop finishes create a string of words with the list
+            # Using the string search for video name, else print video couldn't be found
+            listOfDrizzles.append(item)
+    
+    stringOfDrizzles = ', '.join(listOfDrizzles)
+    for video in listOfDirectory:
+        # Add video to list
+        if stringOfDrizzles in video:
+            videos.append(VideoFileClip(os.path.join(pathName, video)))
+            break
+    # Video wasn't found
+    else:
+        print(item, 'couldn\'t be found')
+        return
+
+    # Return list of vids or create vid
+
+def videoCreator(startNum=0):
+    # Takes in list of videos and creates result video
+    # Prints out the number of the video
+    combos = waffleDrizzleCombos()
+    for i, combo in enumerate(combos):
+        # Skip video at this index
+        if i < startNum:
+            continue
+
+        print(i, end=' ')
+        listOfVideos = makeVideo(combo)
+        # All videos were found for this combination, so we create video
+        if listOfVideos:
+            finalVideo = concatenate_videoclips(listOfVideos)
+            finalVideo.write_videofile(str(i) + '.mp4')
+
+        # Else video couldn't be found, continue to next combo
 
 
 # nums = list(range(1,11))
 # for i, num in enumerate(nums):
 #     print(i, end=' ')
 #     print(num)
+
+videoCreator()
 
 # Brute force solution
 # Every video will be inside its respective folder name, search through the folder for the video
@@ -173,7 +226,9 @@ def makeVideo(listOfStrings):
 # else print that video couldn't be created due to 'insert reason'
 
 # test code (To be deleted)
-# listOfFolders = os.listdir('Clips')
+# pathName = os.path.abspath('Clips')
+# print(pathName)
+# listOfFolders = os.listdir(pathName)
 # print(listOfFolders)
 # pathname = os.path.abspath('Clips')
 # listOfVanilla = os.listdir(os.path.join(pathname, 'Strawberry Cheesecake'))
