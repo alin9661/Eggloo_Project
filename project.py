@@ -69,19 +69,22 @@ def waffleDrizzleCombos():
 
 def makeVideo(listOfStrings):
     # makeVideo takes a list of strings generated from waffleDrizzleCombos
-    # and creates a video by concatenating clips using the corresponding name
-    # of the string with respect to the order at which they appear in the string
+    # and creates a list of videos by searching through folders with the respective
+    # name of the video we are looking for
+    # If a video isn't found we print out the reason why and return None
     
     hasWhipped = False
     hasPocky = False
     pathName = os.path.abspath('Clips')
     listOfDirectory = os.listdir(pathName)
     videos = []
-    
 
+    # Loop through each element of listOfStrings to search for the video
+    # that has the item name
     for item in listOfStrings:
+        # Item is Waffle
         if item == 'Waffle':
-            # Find video in folder
+            # Search folder for video with item name
             for video in listOfDirectory: 
                 # Add video to list
                 if item in video:
@@ -90,12 +93,14 @@ def makeVideo(listOfStrings):
 
             # Video wasn't found in folder, error
             else:
-                print('Waffle video couldn\'t be found')
+                print(item, 'video couldn\'t be found')
                 return
 
+        # Item is an ice cream
         elif item in iceCreamFlavors:
             pathName = os.path.join(pathName, item)
             listOfDirectory = os.listdir(pathName)
+            # Search folder for video with item name
             for video in listOfDirectory:
                 # Add video to list
                 if item in video:
@@ -107,11 +112,14 @@ def makeVideo(listOfStrings):
                 print(item, 'video couldn\'t be found')
                 return
         
+        # Item is whipped cream/Chocolate pocky
         elif item in whippedAndPocky:
+            # Item is in Whipped Cream folder
             if item == 'Whipped Cream':
                 hasWhipped = True
                 pathName = os.path.join(pathName, item)
                 listOfDirectory = os.listdir(pathName)
+                # Search folder for video with item name
                 for video in listOfDirectory:
                     # Add video to list
                     if item in video:
@@ -123,13 +131,12 @@ def makeVideo(listOfStrings):
                     print(item, 'video couldn\'t be found')
                     return
 
-            # It is possible to reach this statement without reaching whipped cream
-            # In that case whipped cream wasn't a topping and we should go straight
-            # into no whipped cream folder
+            # Item is in Chocolate Pocky folder 
             elif item == 'Chocolate Pocky' and hasWhipped:
                 hasPocky = True
                 pathName = os.path.join(pathName, item)
                 listOfDirectory = os.listdir(pathName)
+                # Search folder for video with item name
                 for video in listOfDirectory:
                     # Add video to list
                     if item in video:
@@ -141,6 +148,8 @@ def makeVideo(listOfStrings):
                     print(item, 'video couldn\'t be found')
                     return
 
+            # Edge case: Chocolate Pocky without whipped cream
+            # Move path into No Whipped Cream folder
             elif item == 'Chocolate Pocky' and not hasWhipped:
                 hasPocky = True
                 pathName = os.path.join(pathName, 'No Whipped Cream', item)
@@ -156,9 +165,10 @@ def makeVideo(listOfStrings):
                     print(item, 'video couldn\'t be found')
                     return
 
+        # Item is a drizzle
         elif item in drizzles:
-            # Possible to reach here without adding a pocky or whipped cream
-            # in that case we would have to go to no whipped and no pocky
+            # Edge case: Drizzles with NO Pocky or Whipped Cream
+            # Move path into No Whipped Cream and No Pocky Stick
             if not hasWhipped and not hasPocky:
                 pathName = os.path.join(pathName, 'No Whipped Cream', 'No Pocky Stick')
                 listOfDirectory = os.listdir(pathName)
@@ -171,8 +181,8 @@ def makeVideo(listOfStrings):
                 stringOfDrizzles += ', ' + item
             
             # Find video from drizzles
-            # Loop through sorted listOfDirectory to obtain the first occurence
-            # of the video we are looking for so we don't mess up the order
+            # Looping through sorted listOfDirectory allows us to obtain the first
+            # occurence of the video we are looking for sake of video concatenation order
             for video in sorted(listOfDirectory):
                 # Add video to list
                 if stringOfDrizzles in video:
