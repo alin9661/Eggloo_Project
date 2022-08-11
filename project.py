@@ -204,12 +204,6 @@ def videoCreator(startNum=0):
 
         # Else video couldn't be found, continue to next combo
 
-
-# nums = list(range(1,11))
-# for i, num in enumerate(nums):
-#     print(i, end=' ')
-#     print(num)
-
 videoCreator()
 
 # Brute force solution
@@ -224,19 +218,6 @@ videoCreator()
 # Searching through video files,
 # if video found create it
 # else print that video couldn't be created due to 'insert reason'
-
-# test code (To be deleted)
-# pathName = os.path.abspath('Clips')
-# print(pathName)
-# listOfFolders = os.listdir(pathName)
-# print(listOfFolders)
-# pathname = os.path.abspath('Clips')
-# listOfVanilla = os.listdir(os.path.join(pathname, 'Strawberry Cheesecake'))
-# print(listOfVanilla)
-    
-# combos = waffleDrizzleCombos()
-# for i, combo in enumerate(combos):
-#     print(i, combo)
 
 
 
