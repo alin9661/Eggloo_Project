@@ -80,6 +80,9 @@ def makeVideo(listOfStrings):
     listOfDirectory = os.listdir(pathName)
     videos = []
 
+    # Waffle folder 
+    # Fix !!
+
     # Loop through each element of listOfStrings to search for the video
     # that has the item name
     for item in listOfStrings:
@@ -114,6 +117,7 @@ def makeVideo(listOfStrings):
                 return
         
         # Item is whipped cream/Chocolate pocky
+        # Fix !!
         elif item in whippedAndPocky:
             # Item is in Whipped Cream folder
             if item == 'Whipped Cream':
@@ -223,6 +227,9 @@ def videoCreator(startNum=0):
 
 videoCreator()
    
+# combos = waffleCombos()
+# for i, combo in enumerate(combos):
+#     print(i, combo)
 
 # Brute force solution
 # Every video will be inside its respective folder name, search through the folder for the video

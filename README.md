@@ -14,3 +14,4 @@ Since we don't care for order (i.e putting Fruity Pebbles and then Oreo toppings
 Therefore to find the total number of combinations from 7 ice creams, 10 toppings, 5 drizzles (+1 topping and drizzle for the possibility of no topping or no drizzle) is 7(5 + 5(10 choose 2)) = **1610 different waffle cones**
 
 ![image](https://user-images.githubusercontent.com/90729424/182238731-7fd3692a-d580-4d1f-a919-c9bca327883a.png)
+
