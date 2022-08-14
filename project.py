@@ -30,18 +30,12 @@ def waffleCombos():
         yield combosList
 
         # Case 2: Ice cream + drizzles
-        for j in range(1, len(drizzles)+1):
-            # Permutation function allows us to pass a list of items to
-            # find the permutations of with an integer input of how long 
-            # desired sequence to be
-            permutations = itertools.permutations(drizzles, j)
-            for permutation in permutations:
-                combosList.extend(list(permutation))
-                yield combosList
+        for drizzle in drizzles:
+            combosList.append(drizzle)
+            yield combosList
 
-                # Backtrack as many drizzles as we added
-                for k in range(j):
-                    combosList.pop()
+            # Backtrack as many drizzles as we added
+            combosList.pop()
 
         # Whipped cream and pocky stick combinations
         for i in range(1, len(whippedAndPocky)+1):
@@ -51,15 +45,12 @@ def waffleCombos():
                 yield combosList
 
                 # Case 3: Ice cream + toppings + drizzle drizzle (All permutations of drizzle)
-                for j in range(1, len(drizzles)+1):
-                    permutations = itertools.permutations(drizzles, j)
-                    for permutation in permutations:
-                        combosList.extend(list(permutation))
-                        yield combosList
+                for drizzle in drizzles:
+                    combosList.append(drizzle)
+                    yield combosList
 
-                        # Backtrack as many drizzles as we added
-                        for k in range(j):
-                            combosList.pop()
+                    # Backtrack as many drizzles as we added
+                    combosList.pop()
                 
                 # Backtracking for whipped cream and pocky sticks
                 for j in range(i):
@@ -225,11 +216,11 @@ def videoCreator(startNum=0):
 
         # Else video couldn't be found, continue to next combo
 
-videoCreator()
+# videoCreator()
    
-# combos = waffleCombos()
-# for i, combo in enumerate(combos):
-#     print(i, combo)
+combos = waffleCombos()
+for i, combo in enumerate(combos):
+    print(i, combo)
 
 # Brute force solution
 # Every video will be inside its respective folder name, search through the folder for the video
