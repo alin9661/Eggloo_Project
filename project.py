@@ -175,7 +175,7 @@ def makeVideo(listOfStrings):
                 return
         # Item is a topping
         elif item in whippedAndPocky:
-            video = findRandomTopping()
+            video = findRandomTopping(item)
             if video:
                 videos.append(video)
             else:
