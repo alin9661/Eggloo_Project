@@ -3,13 +3,6 @@ import itertools
 import os
 import random
 
-# finalVideo = concatenate_videoclips(list)
-# finalVideo.write_videofile('finalProduct.mp4')
-
-# final_clip.write_videofile(op.join(movie_fol, out_movie_name)) 
-# add folder name to path to send to that directory
-# default is to send it to the current directory (current folder)
-
 iceCreamFlavors = ['Vanilla', 'Strawberry', 'Matcha', 'Chocolate Lover', 'Cookies \'n\' Cream', 'Campfire S\'mores', 'Strawberry Cheesecake']
 
 drizzles = ['Chocolate Syrup', 'Strawberry Syrup', 'Condensed Milk', 'Caramel Syrup']
@@ -212,25 +205,3 @@ def videoCreator(startNum=0):
 # combos = waffleCombos()
 # for i, combo in enumerate(combos):
 #     print(i, combo)
-
-# Brute force solution
-# Every video will be inside its respective folder name, search through the folder for the video
-# If video is found, append and keep searching until list is empty
-# Else print reason for why video wasn't printed
-
-# Videos will be name with drizzles in order of being place
-# Assuming they are in the proper folder there is no need to name them
-# by ice cream or topping
-
-# Searching through video files,
-# if video found create it
-# else print that video couldn't be created due to 'insert reason'
-
-
-
-# Make a function to print the videos with numbers as the output.
-# If the program stops print the number it stopped at.
-# Use the number as input for the function to start again at the number
-# rather than resetting from 0, set default arguement to 0
-
-# Possibly ask for user input, but it could be obnoxious 
