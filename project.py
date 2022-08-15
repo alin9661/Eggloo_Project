@@ -43,15 +43,12 @@ def waffleCombos():
         combosList.pop()
 
 def makeVideo(listOfStrings):
-    # makeVideo takes a list of strings generated from waffleDrizzleCombos
-    # and creates a list of videos by searching through folders with the respective
-    # name of the video we are looking for
+    # makeVideo takes a list of strings generated from waffleCombos and creates a list of videos
+    # by searching through folders with the respective name of the video we are looking for
     # If a video isn't found we print out the reason why and return None
     
     hasWhipped = False
-    hasPocky = False
     pathName = os.path.abspath('Clips')
-    listOfDirectory = os.listdir(pathName)
     videos = []
 
     def findRandomWaffle():
@@ -187,10 +184,12 @@ def makeVideo(listOfStrings):
 
 
 def videoCreator(startNum=0):
-    # videoCreator calls waffleDrizzleCombos and begins creating videos from each
-    # video combination.
-    # It takes in a starting number parameter, default 0, to skip video processing
-    # of videos before the startNum index
+    # videoCreator calls waffleCombos and begins creating videos from each video combination.
+    # Each combination is then passed into makeVideo to receive a list.
+    # If the list has contents then we proceed to create the videos to be put into
+    # "Output Videos" folder. Else we move onto the next video combination
+    # videoCreator also takes in a starting number parameter, default 0, to
+    # skip video processing of videos before the startNum index
     combos = waffleCombos()
     for i, combo in enumerate(combos):
         # Skip video at this index
