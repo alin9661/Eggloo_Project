@@ -1,6 +1,7 @@
 from moviepy.editor import *
 import itertools
 import os
+import random
 
 # finalVideo = concatenate_videoclips(list)
 # finalVideo.write_videofile('finalProduct.mp4')
@@ -60,123 +61,127 @@ def makeVideo(listOfStrings):
     listOfDirectory = os.listdir(pathName)
     videos = []
 
+    def findRandomWaffle():
+        # Search for random video in "Waffle" folder
+        pathName = os.path.join(pathName, 'Waffle')
+        listOfVideos = os.listdir(pathName)
+        # If there exist a video, return it
+        if listOfVideos:
+            video = random.choice(listOfVideos)
+            return VideoFileClip(os.path.join(pathName, video))
+        
+        # Else print no video found
+        print('Waffle video couldn\'t be found')
+        return
+
+    def findRandomIceCream(iceCream):
+        # Search for random video in "Ice Cream" folder
+        pathName = os.path.join(pathName, 'Ice Cream')
+        listOfVideos = os.listdir(pathName)
+        # If there exist a video, return it
+        if listOfVideos:
+            video = random.choice(listOfVideos)
+            return VideoFileClip(os.path.join(pathName, video))
+
+        # Else print no video found
+        print(iceCream ,'video couldn\'t be found')
+        return
+
+    def findRandomDrizzle(drizzle):
+        # Search for random video in "Drizzle" folder
+        pathName = os.path.join(pathName, 'Drizzle')
+        listOfVideos = os.listdir(pathName)
+        # If there exist a video, return it
+        if listOfVideos:    
+            video = random.choice(listOfVideos)
+            return VideoFileClip()
+
+        # Else print no video found
+        print(drizzle ,'video couldn\'t be found')
+        return
+
+    def findRandomTopping(topping):
+        # Allows us to update hasWhipped bool
+        nonlocal hasWhipped
+        # Check if topping is Whipped Cream
+        if topping == 'Whipped Cream':
+            hasWhipped = True
+            pathName = os.path.join(pathName, 'Whipped Cream')
+            listOfVideos = os.listdir(pathName)
+            # If there exist a video, return it
+            if listOfVideos:    
+                video = random.choice(listOfVideos)
+                return VideoFileClip()
+
+            # Else print no video found
+            print(topping ,'video couldn\'t be found')
+            return
+
+        # Else it is Chocolate Pocky
+
+        # hasWhipped and function was called again
+        if hasWhipped:
+            pathName = os.path.join(pathName, 'WC CP')
+            listOfVideos = os.listdir(pathName)
+            # If there exist a video, return it
+            if listOfVideos:    
+                video = random.choice(listOfVideos)
+                return VideoFileClip()
+
+            # Else print no video found
+            print(topping ,'video couldn\'t be found')
+            return
+        # !hasWhipped and function was called, topping is Chocolate Pocky 
+        else:
+            pathName = os.path.join(pathName, 'Chocolate Pocky')
+            listOfVideos = os.listdir(pathName)
+            # If there exist a video, return it
+            if listOfVideos:    
+                video = random.choice(listOfVideos)
+                return VideoFileClip()
+
+            # Else print no video found
+            print(topping ,'video couldn\'t be found')
+            return
+
+
     # Loop through each element of listOfStrings to search for the video
     # that has the item name
     for item in listOfStrings:
         # Item is Waffle
         if item == 'Waffle':
-            # Search folder for video with item name
-            for video in listOfDirectory: 
-                # Add video to list
-                if item in video:
-                    videos.append(VideoFileClip(os.path.join(pathName, video)))
-                    break
-
-            # Video wasn't found in folder, error
+            video = findRandomWaffle()
+            # If video was found
+            if video:
+                videos.append(video)
+            # video wasn't found, exit combo
             else:
-                print(item, 'video couldn\'t be found')
                 return
-
-        # Item is an ice cream
+        # Item is Ice Cream
         elif item in iceCreamFlavors:
             pathName = os.path.join(pathName, item)
-            listOfDirectory = os.listdir(pathName)
-            # Search folder for video with item name
-            for video in listOfDirectory:
-                # Add video to list
-                if item in video:
-                    videos.append(VideoFileClip(os.path.join(pathName, video)))
-                    break
-
-            # Video wasn't found
+            video = findRandomIceCream(item)
+            if video:
+                videos.append(video)
             else:
-                print(item, 'video couldn\'t be found')
                 return
-        
-        # Item is whipped cream/Chocolate pocky
-        # Fix !!
-        elif item in whippedAndPocky:
-            # Item is in Whipped Cream folder
-            if item == 'Whipped Cream':
-                hasWhipped = True
-                pathName = os.path.join(pathName, item)
-                listOfDirectory = os.listdir(pathName)
-                # Search folder for video with item name
-                for video in listOfDirectory:
-                    # Add video to list
-                    if item in video:
-                        videos.append(VideoFileClip(os.path.join(pathName, video)))
-                        break
-
-                # Video wasn't found
-                else:
-                    print(item, 'video couldn\'t be found')
-                    return
-
-            # Item is in Chocolate Pocky folder 
-            elif item == 'Chocolate Pocky' and hasWhipped:
-                hasPocky = True
-                pathName = os.path.join(pathName, item)
-                listOfDirectory = os.listdir(pathName)
-                # Search folder for video with item name
-                for video in listOfDirectory:
-                    # Add video to list
-                    if item in video:
-                        videos.append(VideoFileClip(os.path.join(pathName, video)))
-                        break
-
-                # Video wasn't found
-                else:
-                    print(item, 'video couldn\'t be found')
-                    return
-
-            # Edge case: Chocolate Pocky without whipped cream
-            # Move path into No Whipped Cream folder
-            elif item == 'Chocolate Pocky' and not hasWhipped:
-                hasPocky = True
-                pathName = os.path.join(pathName, 'No Whipped Cream', item)
-                listOfDirectory = os.listdir(pathName)
-                for video in listOfDirectory:
-                    # Add video to list
-                    if item in video:
-                        videos.append(VideoFileClip(os.path.join(pathName, video)))
-                        break
-
-                # Video wasn't found
-                else:
-                    print(item, 'video couldn\'t be found')
-                    return
-
-        # Item is a drizzle
+        # Item is drizzle
         elif item in drizzles:
-            # Edge case: Drizzles with NO Pocky or Whipped Cream
-            # Move path into No Whipped Cream and No Pocky Stick
-            if not hasWhipped and not hasPocky:
-                pathName = os.path.join(pathName, 'No Whipped Cream', 'No Pocky Stick')
-                listOfDirectory = os.listdir(pathName)
-
-            # Create a string of drizzle names to search for video
-            stringOfDrizzles = ''
-            if not stringOfDrizzles:
-                stringOfDrizzles = item
+            pathName = os.path.join(pathName, item)
+            video = findRandomDrizzle(item)
+            if video:
+                videos.append(video)
             else:
-                stringOfDrizzles += ', ' + item
-            
-            # Find video from drizzles
-            # Looping through sorted listOfDirectory allows us to obtain the first
-            # occurence of the video we are looking for sake of video concatenation order
-            for video in sorted(listOfDirectory):
-                # Add video to list
-                if stringOfDrizzles in video:
-                    videos.append(video)
-                    break
-
-            # Video wasn't found
+                return
+        # Item is a topping
+        elif item in whippedAndPocky:
+            video = findRandomTopping()
+            if video:
+                videos.append(video)
             else:
-                print(stringOfDrizzles, 'video couldn\'t be found')
                 return
 
-    # All videos were found, return list
+    # All videos were found, return list containing videos
     return videos
 
 
@@ -204,9 +209,9 @@ def videoCreator(startNum=0):
 
 # videoCreator()
    
-combos = waffleCombos()
-for i, combo in enumerate(combos):
-    print(i, combo)
+# combos = waffleCombos()
+# for i, combo in enumerate(combos):
+#     print(i, combo)
 
 # Brute force solution
 # Every video will be inside its respective folder name, search through the folder for the video
