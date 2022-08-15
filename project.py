@@ -112,7 +112,7 @@ def makeVideo(listOfStrings):
             # If there exist a video, return it
             if listOfVideos:    
                 video = random.choice(listOfVideos)
-                return VideoFileClip()
+                return VideoFileClip(os.path.join(pathPointer, video))
 
             # Else print no video found
             print(topping ,'video couldn\'t be found')
@@ -127,7 +127,7 @@ def makeVideo(listOfStrings):
             # If there exist a video, return it
             if listOfVideos:    
                 video = random.choice(listOfVideos)
-                return VideoFileClip()
+                return VideoFileClip(os.path.join(pathPointer, video))
 
             # Else print no video found
             print(topping ,'video couldn\'t be found')
@@ -139,7 +139,7 @@ def makeVideo(listOfStrings):
             # If there exist a video, return it
             if listOfVideos:    
                 video = random.choice(listOfVideos)
-                return VideoFileClip()
+                return VideoFileClip(os.path.join(pathPointer, video))
 
             # Else print no video found
             print(topping ,'video couldn\'t be found')
