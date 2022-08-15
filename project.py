@@ -55,52 +55,60 @@ def makeVideo(listOfStrings):
     videos = []
 
     def findRandomWaffle():
+        # Creating local variable of path to find videos
+        pathPointer = pathName
+        pathPointer = os.path.join(pathPointer, 'Waffle')
         # Search for random video in "Waffle" folder
-        pathName = os.path.join(pathName, 'Waffle')
-        listOfVideos = os.listdir(pathName)
+        listOfVideos = os.listdir(pathPointer)
         # If there exist a video, return it
         if listOfVideos:
             video = random.choice(listOfVideos)
-            return VideoFileClip(os.path.join(pathName, video))
+            return VideoFileClip(os.path.join(pathPointer, video))
         
         # Else print no video found
         print('Waffle video couldn\'t be found')
         return
 
     def findRandomIceCream(iceCream):
+        # Creating local variable of path to find videos
+        pathPointer = pathName
+        pathPointer = os.path.join(pathPointer, 'Ice Cream')
         # Search for random video in "Ice Cream" folder
-        pathName = os.path.join(pathName, 'Ice Cream')
-        listOfVideos = os.listdir(pathName)
+        listOfVideos = os.listdir(pathPointer)
         # If there exist a video, return it
         if listOfVideos:
             video = random.choice(listOfVideos)
-            return VideoFileClip(os.path.join(pathName, video))
+            return VideoFileClip(os.path.join(pathPointer, video))
 
         # Else print no video found
         print(iceCream ,'video couldn\'t be found')
         return
 
     def findRandomDrizzle(drizzle):
+        # Creating local variable of path to find videos
+        pathPointer = pathName
+        pathPointer = os.path.join(pathPointer, 'Drizzle')
         # Search for random video in "Drizzle" folder
-        pathName = os.path.join(pathName, 'Drizzle')
-        listOfVideos = os.listdir(pathName)
+        listOfVideos = os.listdir(pathPointer)
         # If there exist a video, return it
         if listOfVideos:    
             video = random.choice(listOfVideos)
-            return VideoFileClip()
+            return VideoFileClip(os.path.join(pathPointer, video))
 
         # Else print no video found
         print(drizzle ,'video couldn\'t be found')
         return
 
     def findRandomTopping(topping):
+        # Creating local variable of path to find videos
+        pathPointer = pathName
         # Allows us to update hasWhipped bool
         nonlocal hasWhipped
         # Check if topping is Whipped Cream
         if topping == 'Whipped Cream':
             hasWhipped = True
-            pathName = os.path.join(pathName, 'Whipped Cream')
-            listOfVideos = os.listdir(pathName)
+            pathPointer = os.path.join(pathPointer, 'Whipped Cream')
+            listOfVideos = os.listdir(pathPointer)
             # If there exist a video, return it
             if listOfVideos:    
                 video = random.choice(listOfVideos)
@@ -114,8 +122,8 @@ def makeVideo(listOfStrings):
 
         # hasWhipped and function was called again
         if hasWhipped:
-            pathName = os.path.join(pathName, 'WC CP')
-            listOfVideos = os.listdir(pathName)
+            pathPointer = os.path.join(pathPointer, 'WC CP')
+            listOfVideos = os.listdir(pathPointer)
             # If there exist a video, return it
             if listOfVideos:    
                 video = random.choice(listOfVideos)
@@ -126,8 +134,8 @@ def makeVideo(listOfStrings):
             return
         # !hasWhipped and function was called, topping is Chocolate Pocky 
         else:
-            pathName = os.path.join(pathName, 'Chocolate Pocky')
-            listOfVideos = os.listdir(pathName)
+            pathPointer = os.path.join(pathPointer, 'Chocolate Pocky')
+            listOfVideos = os.listdir(pathPointer)
             # If there exist a video, return it
             if listOfVideos:    
                 video = random.choice(listOfVideos)
@@ -200,7 +208,7 @@ def videoCreator(startNum=0):
 
         # Else video couldn't be found, continue to next combo
 
-# videoCreator()
+videoCreator()
    
 # combos = waffleCombos()
 # for i, combo in enumerate(combos):
