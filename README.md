@@ -1,4 +1,4 @@
-# Eggloo_Project
+# Egglie
 
 This project consists of the various combinations that waffles can be made using the ice cream flavors, toppings, and drizzles avaliable.  
 To make a cone the ingredients must be made in a specific sequence where we are limited to having 1 ice cream flavor, 2 toppings, and 1 drizzle per cone. The total number of combinations can be calculated using combinatorics where we are given 7 ice cream flavors, 9 toppings, and 4 drizzles (Each combination also includes the cone itself). We can work out this number by considering the different cases for which somebody can construct a cone.
